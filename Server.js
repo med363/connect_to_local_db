@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 //     assert.equal(err, null, 'DATA FAILED')
 //     const db = client.db(dbName)
 // })
-const port = 4000
+const port = 5000
 
 app.use('/api/users', userRoute)
 app.use('/api/auth', authRoute)

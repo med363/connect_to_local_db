@@ -11,6 +11,7 @@ exports.create = (req, res) => {
         fullName: req.body.fullName,
         phone: req.body.phone,
         email: req.body.email,
+        password: req.body.password,
         is_active: req.body.is_active,
         is_verified: req.body.is_verified,
 
@@ -33,3 +34,36 @@ exports.create = (req, res) => {
 
 
 }
+//get all medications
+exports.getAll=(req, res) => {
+    User.find().then(data => res.send(data)).catch(err => {
+            res.status(500).send({ message: err.message || "something wrong when search medicals" })
+        })
+    }
+//get one medication
+exports.getOne=(req, res) => {
+    User.findOne(
+        {_id: req.params.id}
+    ).then(data => res.send(data)).catch(err => {
+            res.status(500).send({ message: err.message || "something wrong when DELETE medicals" })
+        })
+    }
+
+//update one medication
+exports.updateUser=(req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.params.id},
+        req.body,
+        {new : true}
+    ).then(data => res.send(data)).catch(err => {
+            res.status(500).send({ message: err.message || "something wrong when UPDATE medicals" })
+        })
+    }
+//delete one medication
+exports.deleteUser=(req, res) => {
+    User.findOneAndUpdate(
+        {_id: req.params.id}
+    ).then(data => res.send(data)).catch(err => {
+            res.status(500).send({ message: err.message || "something wrong when DELETE medicals" })
+        })
+    }
